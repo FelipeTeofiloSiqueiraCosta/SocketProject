@@ -16,7 +16,8 @@ def deal_with_client(connstream):
     data = connstream.recv(1024)
     # empty data means the client is finished with us
     print(data)
-    connstream.sendall(b"Teste mensagem do servidor")
+    
+    connstream.send(b"Servidor: mensagem recebida!")
     
     while data:
        # if not do_something(connstream, data):
@@ -25,6 +26,7 @@ def deal_with_client(connstream):
             #break
         data = connstream.recv(1024)
         print(data)
+        connstream.send(b"Mensagem recebida!")
     # finished with client
 
 while True:

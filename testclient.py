@@ -16,8 +16,17 @@ conn.connect((HOST, PORT))
 cert = conn.getpeercert()
 
 
-conn.sendall(b"Teste de mensagem do cliente")
+# Recebendo a mensagem do usuário final pelo teclado
+mensagem = input()
+ 
+# Enviando a mensagem para o Servidor TCP através da conexão
+while mensagem != '':
+    conn.send(str(mensagem).encode())
+    print("Resposta: {}".format(
+        conn.recv(1024)
+    ))
+    mensagem = input()
+    
 
-print("Resposta: {}".format(
-    conn.recv(1024).split(b"\r\n")
-))
+
+
